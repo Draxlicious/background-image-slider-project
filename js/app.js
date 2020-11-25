@@ -1,35 +1,35 @@
 // immediate invoked function expression
-
-(function() {
-  const pictures = [
-    "contBcg-0",
-    "contBcg-1",
-    "contBcg-2",
-    "contBcg-3",
-    "contBcg-4"
-  ];
+let cars = [
+    "contBcg-0.jpeg",
+    "contBcg-1.jpeg",
+    "contBcg-2.jpeg",
+    "contBcg-3.jpeg",
+    "contBcg-4.jpeg" 
+]
 
   //select both left and right button. Add event listeners
-  const buttons = document.querySelectorAll('.btn')
-  const imageDIV = document.querySelector('.img-container')
-  let counter = 0
+let imgElement = document.querySelector(".img-container")
+let i = 0;
 
-  buttons.forEach(function(button){
-    button.addEventListener('click', function(e){
-      if (button.classList.contains('btn-left')){
-        counter--
-        if(counter < 0){
-          counter = pictures.length -1
+let buttons = document.querySelectorAll(".btn")
+
+buttons.forEach((btn)=>{
+  btn.addEventListener('click', function(){
+    if(btn.classList.contains("btn-right")){
+        i++
+        if(i > cars.length - 1){
+          i = 0
         }
-        imageDIV.style.backgroundImage = `url('./img/${pictures[counter]}.jpeg')`
+        imgElement.style.backgroundImage = `url(../img/${cars[i]}`;
       }
-      if (button.classList.contains('btn-right')){
-        counter++
-        if(counter > pictures.length -1){
-          counter = 0
-        }
-        imageDIV.style.backgroundImage = `url('./img/${pictures[counter]}.jpeg')`
+
+    if(btn.classList.contains("btn-left")){
+      i--
+      if(i < 0){
+        i = cars.length - 1
       }
-    })
+      imgElement.style.backgroundImage = `url(../img/${cars[i]}`;
+    }
+    console.log(i)
   })
-})();
+})
